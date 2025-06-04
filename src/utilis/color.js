@@ -1,5 +1,13 @@
 const PROCESS_COLORS = [
-    '#fde68a', '#bef264', '#f9a8d4', '#99f6e4', '#6ee7b7', '#fdba74', '#fef08a', '#fca5a5', '#e5e7eb', '#bae6fd',
+ '#BFDBFE', // Light Blue
+'#A7F3D0', // Light Green
+'#FDE68A', // Light Amber
+'#DDD6FE', // Light Purple
+'#FBCFE8', // Light Pink
+'#A5F3FC', // Light Cyan
+'#FED7AA', // Light Orange
+'#C7D2FE', // Light Indigo
+
 ];
 
 export const getProcessColor = (index) => {

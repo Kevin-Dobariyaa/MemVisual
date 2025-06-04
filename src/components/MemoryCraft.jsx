@@ -68,19 +68,19 @@ function MemoryCraft({ partitionType, memory, processCart }) {
         </div>
       </div>
 
-      <div>
+      <div className="w-full flex flex-col gap-7">
         <div>
           <FirstFit processCart={processCart} memory={memory} partitionType={partitionType} />
         </div>
-        {/* <div>
-          <FirstFit />
+        <div>
+          <NextFit processCart={processCart} memory={memory} partitionType={partitionType} />
         </div>
         <div>
-          <FirstFit />
+          <WorstFit processCart={processCart} memory={memory} partitionType={partitionType}/>
         </div>
         <div>
-          <FirstFit />
-        </div> */}
+          <BestFit processCart={processCart} memory={memory} partitionType={partitionType}/>
+        </div>
       </div>
     </div>
   );

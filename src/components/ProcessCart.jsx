@@ -22,7 +22,7 @@ function processCart({processCart}) {
   }
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-md p-6 mb-6">
+    <div className="relative w-full bg-white rounded-lg shadow-md p-6 mb-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-gray-800">Process Cart</h2>
         <div className="bg-gray-100 px-2 py-1 rounded-md text-gray-500 text-sm">
@@ -30,11 +30,11 @@ function processCart({processCart}) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
         {processCart.map((item,id) => (
           <div
             key={id}
-            className="flex items-center justify-between p-3 border border-gray-200 rounded-md group hover:border-blue-200 hover:bg-blue-50 transition-colors"
+            className="flex items-center cursor-pointer justify-between p-3 border border-gray-200 rounded-md group hover:border-blue-200 hover:bg-blue-50 transition-colors"
           >
             <div className="flex items-center">
               <div

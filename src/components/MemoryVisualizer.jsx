@@ -37,7 +37,7 @@ function MemoryVisualizer({ partitionType, memory }) {
   }
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-md p-6">
+    <div className="relative w-full bg-white rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-gray-800">
           Memory Visualization
@@ -55,11 +55,11 @@ function MemoryVisualizer({ partitionType, memory }) {
       </div>
 
       <div className="overflow-x-auto w-full py-4">
-        <div className="flex space-x-1 min-w-max px-2">
+        <div className="flex space-x-1 min-w-max px-2 ">
           {blocks.map((size, index) => (
             <div
               key={index}
-              className="font-medium text-gray-600 bg-gray-100 flex items-center justify-center rounded-md shadow-sm border-2 border-gray-200"
+              className="font-medium cursor-pointer text-gray-600 bg-gray-100 flex items-center justify-center rounded-md shadow-sm border-2 border-gray-200 hover:transform hover:scale-105 transition-all duration-200 ease-in-out"
               style={{
                 width: `${size+10}px`, // control width per size (tweak as needed),
                 minWidth: "60px", // prevent too small blocks
@@ -70,6 +70,7 @@ function MemoryVisualizer({ partitionType, memory }) {
             </div>
           ))}
         </div>
+        <div className="absolute right-0 w-16 bottom-9 h-[35%] bg-gradient-to-r from-transparent to-zinc-50" />
       </div>
     </div>
   );

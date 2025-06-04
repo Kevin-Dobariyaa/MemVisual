@@ -21,7 +21,7 @@ function MemoryCreator({ partitionType, createMemory }) {
     setError(null);
     setBlocks((prevBlocks) => [...prevBlocks, blockSize]);
     // Reset block size to default after adding}]);
-    setBlockSize(0);
+    setBlockSize(128);
   };
 
   const createMemoryy = () => {

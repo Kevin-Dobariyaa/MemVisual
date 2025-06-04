@@ -1,62 +1,20 @@
-import React from "react";
 import firstFit from "../../utilis/firstFit";
-import { getProcessColor } from "../../utilis/color";
+import Dynamic from "./Dynamic";
+import Static from "./Static";
 
 function FirstFit({ processCart, memory, partitionType }) {
   const newMemory = firstFit(partitionType, memory, processCart);
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">
-        First Fit Memory Allocation
+    <div className="relative">
+      <h2 className="text-2xl font-bold text-gray-600 mb-1 mt-4 ml-2">
+        First Fit
       </h2>
-      <div className="overflow-x-auto w-full py-4">
+      <div className="overflow-x-auto w-full py-4 fade-right">
         <div className="flex space-x-1 min-w-max px-2">
-          {newMemory.map((block, index) => (
-            <div
-              key={index}
-              className=" text-[11px] text-gray-500 z-100 font-medium bg-gray-100 flex items-center justify-between rounded-md shadow-sm border-2 border-gray-200 px-1"
-              style={{
-                width: `${block.size + 10}px`,
-                minWidth: "60px",
-                height: "60px",
-              }}
-            >
-              {block.processId !== -1 ? (
-                <>
-                  <div
-                    className="flex items-center justify-center rounded-md border border-gray-300"
-                    style={{
-                      backgroundColor: getProcessColor(block.processId),
-                      width: `${processCart[block.processId].size}px`,
-                      minWidth: "30px",
-                      height: "50px",
-                    }}
-                  >
-                    <span>
-                      {processCart[block.processId].size} KB
-                    </span>
-                  </div>
-                  {block.size - processCart[block.processId].size !== 0 && (
-                    <div
-                      className="flex items-center justify-center"
-                      style={{
-                        width: `${
-                          block.size - processCart[block.processId].size
-                        }px`,
-                        minWidth: "30px",
-                        height: "50px",
-                      }}
-                    >
-                      {block.size - processCart[block.processId].size} KB
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="flex items-center justify-center w-full">{block.size} KB</div>
-              )}
-            </div>
-          ))}
+          { partitionType === 'static' && (<Static newMemory={newMemory} processCart={processCart} />)}
+          { partitionType === 'dynamic' && (<Dynamic newMemory={newMemory} processCart={processCart} />)}
         </div>
+        <div className="absolute right-0 w-10 bottom-3.5 h-[50%] bg-gradient-to-r from-transparent to-zinc-50" />
       </div>
     </div>
   );

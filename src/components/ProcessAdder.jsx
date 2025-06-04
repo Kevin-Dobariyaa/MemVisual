@@ -33,7 +33,7 @@ function ProcessAdder({ addProcessToCart, processCart }) {
   };
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-md p-6 mb-6">
+    <div className="w-full bg-white rounded-lg shadow-md p-6 mb-6 sticky top-4 z-10">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Add Process</h2>
 
       <div className="space-y-4">

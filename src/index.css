@@ -11,3 +11,16 @@
         @apply block w-full rounded-md outline-none border border-gray-300 shadow-sm focus:border focus:border-t-blue-800 focus:border-l-blue-800 focus:border-r-purple-800 focus:border-b-purple-800 sm:text-sm p-2
     }
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  /* background-color: rgba(100, 100, 100, 0.3); Low opacity */
+}

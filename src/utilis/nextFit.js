@@ -1,5 +1,5 @@
 
-const firstFit = (partitionType, memory, processCart) =>{
+const nextFit = (partitionType, memory, processCart) =>{
     let mem = [];
     
     if(partitionType === 'static'){
@@ -14,23 +14,30 @@ const firstFit = (partitionType, memory, processCart) =>{
                 processId:-1,
             })
         })
+        let idx = 0;
         processCart.map((process,id)=>{
             let size = process.size;
             let allocate = false;
-            blocks.map((block,idd)=>{
-                if(block >= size && track[idd] !== 1 && allocate === false){
-                    track[idd] = 1;
-                    m[idd].processId = id;  
+            let cnt = 0;
+            while(cnt < noBlock){
+                let block = blocks[idx];
+                if(block >= size && track[idx] !== 1 && allocate === false){
+                    track[idx] = 1;
+                    m[idx].processId = id;  
                     allocate = true; 
                     IF = IF + block - size;
+                    break;
                 }
-            })
+                idx = (idx + 1)%noBlock;
+                cnt++;
+            }
         })
         
         mem = m;
 
     }else if(partitionType === 'dynamic'){
-        let {blocks} = memory;
+        let {noBlock,blocks} = memory;
+
         let m = [];
         let IF = 0;
 
@@ -41,26 +48,29 @@ const firstFit = (partitionType, memory, processCart) =>{
                 processId:[],
             })
         })
+        let idx = 0;
 
         processCart.map((process,id)=>{
             let size = process.size;
             let allocate = false;
-            m.map((block,idd)=>{
-                if(block.remain >= size && allocate === false){
-                    m[idd].processId.push(id);  
-                    block.remain -= size;
+            let cnt = 0;
+            while(cnt < noBlock){
+                if(m[idx].remain >= size && allocate === false){
+                    m[idx].processId.push(id); 
+                    m[idx].remain -= size; 
                     allocate = true; 
+                    break;
                 }
-            })
+                idx = (idx + 1)%noBlock;
+                cnt++;
+            }
         })
-         
         
         mem = m;
-
     }
     // Cal IF and External IF
 
     return mem;
 }
 
-export default firstFit
+export default nextFit
