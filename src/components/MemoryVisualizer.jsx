@@ -61,7 +61,7 @@ function MemoryVisualizer({ partitionType, memory }) {
               key={index}
               className="font-medium cursor-pointer text-gray-600 bg-gray-100 flex items-center justify-center rounded-md shadow-sm border-2 border-gray-200 hover:transform hover:scale-105 transition-all duration-200 ease-in-out"
               style={{
-                width: `${size+10}px`, // control width per size (tweak as needed),
+                width: `${size + 10}px`, // control width per size (tweak as needed),
                 minWidth: "60px", // prevent too small blocks
                 height: "60px",
               }}

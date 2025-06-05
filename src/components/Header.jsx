@@ -1,5 +1,5 @@
-import React from 'react'
-import { MemoryStick } from 'lucide-react'
+import React from "react";
+import { MemoryStick } from "lucide-react";
 
 function Header() {
   return (
@@ -12,20 +12,24 @@ function Header() {
             </div>
             <div>
               <h1 className="text-2xl md:text-3xl font-bold">MemVisual</h1>
-              <p className="text-blue-100 text-sm">OS Memory Allocation Visualizer</p>
+              <p className="text-blue-100 text-sm">
+                OS Memory Allocation Visualizer
+              </p>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-4">
             <div className="flex items-center   bg-white bg-opacity-20 rounded-full px-4 py-2">
               <MemoryStick className="h-5 w-5 mr-2" />
-              <span className="text-sm font-medium">Memory Allocation Simulator</span>
+              <span className="text-sm font-medium">
+                Memory Allocation Simulator
+              </span>
             </div>
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

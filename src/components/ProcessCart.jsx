@@ -1,8 +1,8 @@
-import { ShoppingCart } from 'lucide-react';
-import React from 'react'
-import { getProcessColor } from '../utilis/color';
+import { ShoppingCart } from "lucide-react";
+import React from "react";
+import { getProcessColor } from "../utilis/color";
 
-function processCart({processCart}) {
+function processCart({ processCart }) {
   if (processCart.length === 0) {
     return (
       <div className="w-full bg-white rounded-lg shadow-md p-6 mb-6">
@@ -26,12 +26,13 @@ function processCart({processCart}) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-gray-800">Process Cart</h2>
         <div className="bg-gray-100 px-2 py-1 rounded-md text-gray-500 text-sm">
-          {processCart.length} {processCart.length === 1 ? 'process' : 'processes'}
+          {processCart.length}{" "}
+          {processCart.length === 1 ? "process" : "processes"}
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
-        {processCart.map((item,id) => (
+        {processCart.map((item, id) => (
           <div
             key={id}
             className="flex items-center cursor-pointer justify-between p-3 border border-gray-200 rounded-md group hover:border-blue-200 hover:bg-blue-50 transition-colors"
@@ -53,4 +54,4 @@ function processCart({processCart}) {
   );
 }
 
-export default processCart
+export default processCart;

@@ -15,27 +15,28 @@ function Dynamic({ newMemory, processCart }) {
           }}
         >
           {block.processId.map((id, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-center rounded-md border border-gray-300 mr-0.5"
-                style={{
-                  backgroundColor: getProcessColor(id),
-                  width: `${processCart[id].size}px`,
-                  minWidth: "30px",
-                  height: "50px",
-                }}
-              >
-                <span>{processCart[id].size} KB</span>
-              </div>   
+            <div
+              key={idx}
+              className="flex items-center justify-center rounded-md border border-gray-300 mr-0.5"
+              style={{
+                backgroundColor: getProcessColor(id),
+                width: `${processCart[id].size}px`,
+                minWidth: "30px",
+                height: "50px",
+              }}
+            >
+              <span>{processCart[id].size} KB</span>
+            </div>
           ))}
           {block.remain !== 0 && (
-            <div className="flex items-center justify-center w-full" style={
-              {
+            <div
+              className="flex items-center justify-center w-full"
+              style={{
                 width: `${block.remain}px`,
                 minWidth: "30px",
                 height: "50px",
-              }
-            }>
+              }}
+            >
               {block.remain} KB
             </div>
           )}

@@ -1,84 +1,88 @@
+const worstFit = (partitionType, memory, processCart) => {
+  let mem = [];
+  let IF = 0;
+  let EF = 0;
+  let EFProcess = [];
 
-const worstFit = (partitionType, memory, processCart) =>{
-    let mem = [];
-    
-    if(partitionType === 'static'){
-        let {noBlock, blocks} = memory;
-        let track = new Array(noBlock).fill(0);
-        let m = [];
-        let IF = 0;
+  if (partitionType === "static") {
+    let { noBlock, blocks } = memory;
+    let track = new Array(noBlock).fill(0);
+    let m = [];
 
-        blocks.map((block)=>{
-            m.push({
-                size:block,
-                processId:-1,
-            })
-        })
-        processCart.map((process,id)=>{
-            let size = process.size;
-            let worstIdx = -1;
-            let idx = 0;
-            while(idx < noBlock){
-                let block = blocks[idx];
-                
-                if(block >= size && track[idx] !== 1){
-                    if(worstIdx === -1 || block > blocks[worstIdx]){
-                        worstIdx = idx;
-                    }
-                }
+    blocks.map((block) => {
+      m.push({
+        size: block,
+        processId: -1,
+      });
+    });
+    processCart.map((process, id) => {
+      let size = process.size;
+      let worstIdx = -1;
+      let idx = 0;
+      while (idx < noBlock) {
+        let block = blocks[idx];
 
-                idx++;   
-            }
+        if (block >= size && track[idx] !== 1) {
+          if (worstIdx === -1 || block > blocks[worstIdx]) {
+            worstIdx = idx;
+          }
+        }
 
-            if(worstIdx !== -1){
-                track[worstIdx] = 1;
-                m[worstIdx].processId = id;  
-                IF = IF + blocks[worstIdx] - size;
-            }
-        })
-        
-        mem = m;
+        idx++;
+      }
 
-    }else if(partitionType === 'dynamic'){
-        let {noBlock,blocks} = memory;
+      if (worstIdx !== -1) {
+        track[worstIdx] = 1;
+        m[worstIdx].processId = id;
+        IF = IF + blocks[worstIdx] - size;
+      } else {
+        EF += size;
+        EFProcess.push(id);
+      }
+    });
 
-        let m = [];
-        let IF = 0;
+    mem = m;
+  } else if (partitionType === "dynamic") {
+    let { noBlock, blocks } = memory;
 
-        blocks.map((block)=>{
-            m.push({
-                size:block,
-                remain:block,
-                processId:[],
-            })
-        })
+    let m = [];
 
-        processCart.map((process,id)=>{
-            let size = process.size;
-            let worstIdx = -1;
-            let idx = 0;
-            while(idx < noBlock){
-                
-                if(m[idx].remain >= size){
-                    if(worstIdx === -1 || m[idx].remain > m[worstIdx].remain){
-                        worstIdx = idx;
-                    }
-                }
+    blocks.map((block) => {
+      m.push({
+        size: block,
+        remain: block,
+        processId: [],
+      });
+    });
 
-                idx++;   
-            }
+    processCart.map((process, id) => {
+      let size = process.size;
+      let worstIdx = -1;
+      let idx = 0;
+      while (idx < noBlock) {
+        if (m[idx].remain >= size) {
+          if (worstIdx === -1 || m[idx].remain > m[worstIdx].remain) {
+            worstIdx = idx;
+          }
+        }
 
-            if(worstIdx !== -1){
-                m[worstIdx].processId.push(id);
-                m[worstIdx].remain -= size;  
-            }
-        })
-        
-        mem = m;
-    }
-    // Cal IF and External IF
+        idx++;
+      }
 
-    return mem;
-}
+      if (worstIdx !== -1) {
+        m[worstIdx].processId.push(id);
+        m[worstIdx].remain -= size;
+      } else {
+        EF += size;
+        EFProcess.push(id);
+      }
+    });
 
-export default worstFit
+    mem = m;
+  }
+  // Cal IF and External IF
+
+  return { mem, IF, EF, EFProcess };
+};
+
+export default worstFit;

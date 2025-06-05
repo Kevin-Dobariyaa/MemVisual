@@ -1,7 +1,7 @@
 import React from "react";
 import { getProcessColor } from "../../utilis/color";
 
-function Static({newMemory, processCart}) {
+function Static({ newMemory, processCart }) {
   return (
     <>
       {newMemory.map((block, index) => (

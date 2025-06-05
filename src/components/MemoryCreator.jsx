@@ -23,23 +23,23 @@ function MemoryCreator({ createMemory }) {
   };
 
   const createMemoryy = () => {
-      if (blocks.length === 0) {
-        setError("Please add at least one block");
-        return;
-      }
-      if (blocks.some((block) => block <= 0)) {
-        setError("Block size must be greater than 0");
-        return;
-      }
-      if (blocks.length !== noBlock) {
-        setError(
-          `You must add exactly ${noBlock} blocks, currently added ${blocks.length}`
-        );
-        return;
-      }
+    if (blocks.length === 0) {
+      setError("Please add at least one block");
+      return;
+    }
+    if (blocks.some((block) => block <= 0)) {
+      setError("Block size must be greater than 0");
+      return;
+    }
+    if (blocks.length !== noBlock) {
+      setError(
+        `You must add exactly ${noBlock} blocks, currently added ${blocks.length}`
+      );
+      return;
+    }
 
-      createMemory({ noBlock, blocks });
-      setError(null);
+    createMemory({ noBlock, blocks });
+    setError(null);
   };
 
   return (
@@ -58,65 +58,65 @@ function MemoryCreator({ createMemory }) {
       </div>
 
       <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Number of Blocks
-              </label>
-              <div className="flex items-center">
-                <input
-                  type="number"
-                  value={noBlock}
-                  onChange={(e) => setNoBlock(Number(e.target.value))}
-                  className="input"
-                  min="1"
-                />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Number of Blocks
+          </label>
+          <div className="flex items-center">
+            <input
+              type="number"
+              value={noBlock}
+              onChange={(e) => setNoBlock(Number(e.target.value))}
+              className="input"
+              min="1"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Block Size (KB)
+          </label>
+
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex items-center">
+              <input
+                type="number"
+                value={blockSize}
+                onChange={(e) => setBlockSize(Number(e.target.value))}
+                className="input rounded-r-none"
+                min="1"
+              />
+              <div className="bg-gray-100 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md text-gray-500">
+                KB
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Block Size (KB)
-              </label>
+            <button className="btn" onClick={() => handleAdd()}>
+              <PlusCircle size={18} className="mr-2" /> Create Block
+            </button>
+          </div>
 
-              <div className="grid grid-cols-2 gap-2">
-                <div className="flex items-center">
-                  <input
-                    type="number"
-                    value={blockSize}
-                    onChange={(e) => setBlockSize(Number(e.target.value))}
-                    className="input rounded-r-none"
-                    min="1"
-                  />
-                  <div className="bg-gray-100 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md text-gray-500">
-                    KB
-                  </div>
-                </div>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+        </div>
 
-                <button className="btn" onClick={() => handleAdd()}>
-                  <PlusCircle size={18} className="mr-2" /> Create Block
-                </button>
-              </div>
-
-              {error && <p className="text-red-500 text-sm">{error}</p>}
+        {blocks.length > 0 && (
+          <div className="mt-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Added Blocks
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {blocks.map((block, index) => (
+                <span
+                  key={index}
+                  className="p-2 rounded-md bg-slate-100 text-sm font-medium text-gray-500 border border-gray-200 shadow-sm"
+                >
+                  Block {index + 1}: {block} KB{" "}
+                </span>
+              ))}
             </div>
-
-            {blocks.length > 0 && (
-              <div className="mt-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Added Blocks
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {blocks.map((block, index) => (
-                    <span
-                      key={index}
-                      className="p-2 rounded-md bg-slate-100 text-sm font-medium text-gray-500 border border-gray-200 shadow-sm"
-                    >
-                      Block {index + 1}: {block} KB{" "}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
+          </div>
+        )}
 
         <button className="btn" onClick={() => createMemoryy()}>
           <span>Create Memory</span>

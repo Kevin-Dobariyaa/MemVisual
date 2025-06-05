@@ -2,7 +2,6 @@ import { PlusCircle } from "lucide-react";
 import React, { useState } from "react";
 
 function ProcessAdder({ addProcessToCart, processCart }) {
-
   const [error, setError] = useState(null);
 
   const [processName, setProcessName] = useState("Process 1");
@@ -25,9 +24,9 @@ function ProcessAdder({ addProcessToCart, processCart }) {
     }
 
     setError(null);
-    
+
     addProcessToCart({ name: processName, size: processSize });
-   
+
     setProcessName("Process " + (processCart.length + 2));
     setProcessSize(64);
   };
@@ -47,9 +46,7 @@ function ProcessAdder({ addProcessToCart, processCart }) {
             onChange={(e) => setProcessName(e.target.value)}
             className="input"
           />
-          
         </div>
-
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
