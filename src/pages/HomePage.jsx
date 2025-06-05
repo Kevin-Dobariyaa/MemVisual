@@ -36,7 +36,7 @@ function HomePage() {
                 partitionType={partitionType}
                 setPartitionType={setPartitionType}
               />
-              <MemoryCreator partitionType={partitionType} createMemory={setMemory} />
+              <MemoryCreator createMemory={setMemory} />
               <ProcessAdder addProcessToCart = {addProcessToCart} processCart = {processCart} />
             </div>
 

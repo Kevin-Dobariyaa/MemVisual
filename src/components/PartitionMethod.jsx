@@ -11,7 +11,7 @@ function PartitionMethod({partitionType,setPartitionType}) {
             <BookOpen size={20} />
           </button>
           <div className="absolute right-0 w-64 bg-gray-800 text-white text-sm rounded p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-10">
-            Choose between static partitioning (equal-sized blocks) or dynamic partitioning (variable-sized blocks).
+            Choose between static partitioning or dynamic partitioning (variable-sized blocks).
           </div>
         </div>
       </div>

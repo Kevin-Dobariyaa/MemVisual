@@ -1,8 +1,7 @@
 import { PlusCircle, Settings } from "lucide-react";
 import React, { useState } from "react";
 
-function MemoryCreator({ partitionType, createMemory }) {
-  //   const [totalSize, setTotalSize] = useState(1024);
+function MemoryCreator({ createMemory }) {
   const [blockSize, setBlockSize] = useState(128);
   const [blocks, setBlocks] = useState([]);
   const [noBlock, setNoBlock] = useState(1);
@@ -20,20 +19,10 @@ function MemoryCreator({ partitionType, createMemory }) {
 
     setError(null);
     setBlocks((prevBlocks) => [...prevBlocks, blockSize]);
-    // Reset block size to default after adding}]);
     setBlockSize(128);
   };
 
   const createMemoryy = () => {
-    if (partitionType === "static") {
-      if (noBlock <= 0 || blockSize <= 0) {
-        setError("Block size and number of blocks must be greater than 0");
-        return;
-      }
-      let blocks = Array(noBlock).fill(blockSize);
-      createMemory({ noBlock, blocks });
-      setError(null);
-    } else if (partitionType === "dynamic") {
       if (blocks.length === 0) {
         setError("Please add at least one block");
         return;
@@ -51,7 +40,6 @@ function MemoryCreator({ partitionType, createMemory }) {
 
       createMemory({ noBlock, blocks });
       setError(null);
-    }
   };
 
   return (
@@ -63,53 +51,13 @@ function MemoryCreator({ partitionType, createMemory }) {
             <Settings size={20} />
           </button>
           <div className="absolute right-0 w-64 bg-gray-800 text-white text-sm rounded p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-10">
-            Configure the total memory size and block size (for static
+            Configure the total number block and block size (for static
             partition).
           </div>
         </div>
       </div>
 
       <div className="space-y-4">
-        {partitionType === "static" && (
-          <>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Number of Blocks
-              </label>
-              <div className="flex items-center">
-                <input
-                  type="number"
-                  value={noBlock}
-                  onChange={(e) => setNoBlock(Number(e.target.value))}
-                  className="input"
-                  min="1"
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Block Size (KB)
-              </label>
-              <div className="flex items-center">
-                <input
-                  type="number"
-                  value={blockSize}
-                  onChange={(e) => setBlockSize(Number(e.target.value))}
-                  className="input rounded-r-none"
-                  min="1"
-                />
-                <div className="bg-gray-100 px-3 py-2 border border-l-0 border-gray-300 rounded-r-md text-gray-500">
-                  KB
-                </div>
-              </div>
-              <p className="text-xs text-gray-500 mt-1">
-                Initialize {Math.floor(blockSize * noBlock)}KB of memory
-              </p>
-            </div>
-          </>
-        )}
-        {partitionType === "dynamic" && (
-          <>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Number of Blocks
@@ -152,7 +100,7 @@ function MemoryCreator({ partitionType, createMemory }) {
               {error && <p className="text-red-500 text-sm">{error}</p>}
             </div>
 
-            {partitionType === "dynamic" && blocks.length > 0 && (
+            {blocks.length > 0 && (
               <div className="mt-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Added Blocks
@@ -169,8 +117,6 @@ function MemoryCreator({ partitionType, createMemory }) {
                 </div>
               </div>
             )}
-          </>
-        )}
 
         <button className="btn" onClick={() => createMemoryy()}>
           <span>Create Memory</span>
