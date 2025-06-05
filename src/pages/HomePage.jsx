@@ -6,6 +6,7 @@ import MemoryVisualizer from "../components/MemoryVisualizer";
 import ProcessAdder from "../components/ProcessAdder";
 import ProcessCart from "../components/ProcessCart";
 import MemoryCraft from "../components/MemoryCraft";
+import Footer from "../components/Footer";
 
 function HomePage() {
   //Parttion Method
@@ -47,7 +48,7 @@ function HomePage() {
             </div>
           </div>
         </main>
-
+        <Footer />
       </div>
     </>
   );
