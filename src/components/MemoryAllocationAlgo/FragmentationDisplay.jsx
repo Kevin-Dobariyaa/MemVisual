@@ -26,14 +26,14 @@ function FragmentationDisplay({ IF, EF, EFProcess, processCart }) {
           </p>
         </div>
 
-        {/* External Fragmentation */}
+        {/* Incomplete Process */}
         <div
           className="bg-purple-50 rounded-lg p-4 cursor-pointer hover:bg-purple-100 transition-colors shadow-sm "
           onClick={() => setShowEFPopup(true)}
         >
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-medium text-purple-800">
-              External Fragmentation
+              Incomplete Processes
             </h3>
             <span className="text-xl font-bold text-purple-600">{EF} KB</span>
           </div>
