@@ -31,7 +31,6 @@ function MemoryVisualizer({ partitionType, memory }) {
 
   let { blocks } = memory;
   let totalSize = 0;
-
   for (let val of blocks) {
     totalSize += val;
   }

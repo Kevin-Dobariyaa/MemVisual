@@ -1,4 +1,3 @@
-import React from "react";
 import FirstFit from "./MemoryAllocationAlgo/FirstFit";
 import NextFit from "./MemoryAllocationAlgo/NextFit";
 import BestFit from "./MemoryAllocationAlgo/BestFit";
